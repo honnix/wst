@@ -69,14 +69,14 @@ public class TestWorkstationMapAssembler
         Map<String, List<String>> indicatorMap =
                 new HashMap<String, List<String>>();
 
-        indicatorMap.put("w1", indicatorList1);
-        indicatorMap.put("w2", indicatorList2);
+        indicatorMap.put("w1:23", indicatorList1);
+        indicatorMap.put("w2:23", indicatorList2);
 
         assembler.assemble(indicatorMap);
         Map<String, List<Command>> workstationMap = assembler.get();
 
-        List<Command> cmdList1 = workstationMap.get("w1");
-        List<Command> cmdList2 = workstationMap.get("w2");
+        List<Command> cmdList1 = workstationMap.get("w1:23");
+        List<Command> cmdList2 = workstationMap.get("w2:23");
 
         assertEquals("-t", cmdList1.get(0).getIndicator());
         assertEquals("-w", cmdList1.get(1).getIndicator());

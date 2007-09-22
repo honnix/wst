@@ -46,7 +46,7 @@ public class TestTelnetConnection
     {
         try
         {
-            connection.connect("150.236.41.101", 23);
+            connection.connect("localhost", 23);
         }
         catch (NetworkException e1)
         {
@@ -76,5 +76,16 @@ public class TestTelnetConnection
         }
 
         assertEquals("Password: ", communicator.sendAndReceive("ehonlia"));
+        
+        try
+        {
+            connection.close();
+        }
+        catch (NetworkException e)
+        {
+            e.printStackTrace();
+            
+            assertTrue(false);
+        }
     }
 }

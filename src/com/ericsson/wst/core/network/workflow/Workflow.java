@@ -4,6 +4,8 @@
  */
 package com.ericsson.wst.core.network.workflow;
 
+import com.ericsson.wst.core.network.connection.Connection;
+
 /**
  * @author ehonlia
  * 
@@ -12,7 +14,7 @@ public interface Workflow
 {
     Communicator getCommunicator();
 
-    Class<?> getConnectionClass();
+    Class<? extends Connection> getConnectionClass();
 
     void login(String host);
 

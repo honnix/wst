@@ -6,15 +6,15 @@ package com.ericsson.wst.core.network.workflow;
 
 import junit.framework.TestCase;
 
-import com.ericsson.wst.core.network.connection.TelnetConnection;
 import com.ericsson.wst.error.PropertiesFileNotFoundException;
+import com.ericsson.wst.util.PropertiesLoader;
 
 /**
  * @author ehonlia
  * 
  */
 public class TestWSTWorkflowFactory
-        extends TestCase
+    extends TestCase
 {
     private WorkflowFactory workflowFactory;
 
@@ -25,7 +25,7 @@ public class TestWSTWorkflowFactory
      */
     @Override
     protected void setUp()
-            throws Exception
+        throws Exception
     {
         super.setUp();
 
@@ -39,7 +39,7 @@ public class TestWSTWorkflowFactory
      */
     @Override
     protected void tearDown()
-            throws Exception
+        throws Exception
     {
         super.tearDown();
     }
@@ -59,6 +59,20 @@ public class TestWSTWorkflowFactory
             assertTrue(false);
         }
 
-        assertEquals(TelnetConnection.class, workflow.getConnectionClass());
+        try
+        {
+            String connection =
+                    PropertiesLoader.loadProperties("network.properties")
+                            .getProperty("connection");
+            Class<?> clazz = (Class<?>) Class.forName(connection);
+            
+            assertEquals(clazz, workflow.getConnectionClass());
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+
+            assertTrue(false);
+        }
     }
 }

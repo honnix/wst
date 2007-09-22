@@ -60,8 +60,8 @@ public class TestWorkstationFileReader
             e.printStackTrace();
         }
 
-        pw.println("w1 -t -w -u");
-        pw.println("w2 -t -w -u");
+        pw.println("w1:23 -t -w -u");
+        pw.println("w2:23 -t -w -u");
         pw.flush();
         pw.close();
 
@@ -79,13 +79,13 @@ public class TestWorkstationFileReader
             e.printStackTrace();
         }
 
-        assertEquals("-t", indicatorMap.get("w1").get(0));
-        assertEquals("-w", indicatorMap.get("w1").get(1));
-        assertEquals("-u", indicatorMap.get("w1").get(2));
+        assertEquals("-t", indicatorMap.get("w1:23").get(0));
+        assertEquals("-w", indicatorMap.get("w1:23").get(1));
+        assertEquals("-u", indicatorMap.get("w1:23").get(2));
 
-        assertEquals("-t", indicatorMap.get("w2").get(0));
-        assertEquals("-w", indicatorMap.get("w2").get(1));
-        assertEquals("-u", indicatorMap.get("w2").get(2));
+        assertEquals("-t", indicatorMap.get("w2:23").get(0));
+        assertEquals("-w", indicatorMap.get("w2:23").get(1));
+        assertEquals("-u", indicatorMap.get("w2:23").get(2));
 
         testFile.delete();
     }

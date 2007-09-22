@@ -53,7 +53,7 @@ public class MockWorkflow
         return communicator;
     }
 
-    public Class<?> getConnectionClass()
+    public Class<? extends Connection> getConnectionClass()
     {
         return connection.getClass();
     }

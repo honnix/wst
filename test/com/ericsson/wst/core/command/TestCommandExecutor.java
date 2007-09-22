@@ -57,20 +57,20 @@ public class TestCommandExecutor
         cmdList2.add(new TestUsedCommand("-t"));
         cmdList2.add(new TestUsedCommand("-t"));
 
-        workstationMap.put("w1", cmdList1);
-        workstationMap.put("w2", cmdList2);
+        workstationMap.put("w1:23", cmdList1);
+        workstationMap.put("w2:23", cmdList2);
 
         commandExecutor.execute(workstationMap);
 
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w1").get(0).getResponseList().get(0));
+                workstationMap.get("w1:23").get(0).getResponseList().get(0));
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w1").get(1).getResponseList().get(0));
+                workstationMap.get("w1:23").get(1).getResponseList().get(0));
 
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w2").get(0).getResponseList().get(0));
+                workstationMap.get("w2:23").get(0).getResponseList().get(0));
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w2").get(1).getResponseList().get(0));
+                workstationMap.get("w2:23").get(1).getResponseList().get(0));
 
     }
 

@@ -18,7 +18,7 @@ import com.ericsson.wst.error.NetworkException;
  * 
  */
 public class TelnetConnection
-        implements Connection
+    implements Connection
 {
     private TelnetClient client;
 
@@ -33,7 +33,7 @@ public class TelnetConnection
      * @see com.ericsson.wst.core.network.Connection#close()
      */
     public void close()
-            throws NetworkException
+        throws NetworkException
     {
         try
         {
@@ -51,7 +51,7 @@ public class TelnetConnection
      * @see com.ericsson.wst.core.network.Connection#connect()
      */
     public void connect(String host, int port)
-            throws NetworkException
+        throws NetworkException
     {
         try
         {
@@ -82,13 +82,13 @@ public class TelnetConnection
     }
 
     public InputStream getInputStream()
-            throws NetworkException
+        throws NetworkException
     {
         return client.getInputStream();
     }
 
     public OutputStream getOutputStream()
-            throws NetworkException
+        throws NetworkException
     {
         return client.getOutputStream();
     }
@@ -99,10 +99,8 @@ public class TelnetConnection
         {
             return false;
         }
-        else
-        {
-            return client.isConnected();
-        }
+
+        return client.isConnected();
     }
 
 }
