@@ -9,10 +9,10 @@ import com.ericsson.wst.core.network.workflow.MockWorkflow;
 import com.ericsson.wst.core.network.workflow.Workflow;
 import com.ericsson.wst.util.PropertiesLoader;
 
-public class TestTestUsedCommand
+public class TestUsedToTestCommand
         extends TestCase
 {
-    private Command testUsedCommand = new TestUsedCommand("-t");
+    private Command testUsedCommand = new UsedToTestCommand("-t");
 
     @Override
     protected void setUp()

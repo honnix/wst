@@ -3,7 +3,7 @@ package com.ericsson.wst.testsuite;
 import junit.framework.Test;
 import junit.framework.TestSuite;
 
-import com.ericsson.wst.command.TestTestUsedCommand;
+import com.ericsson.wst.command.TestUsedToTestCommand;
 import com.ericsson.wst.core.command.TestCommandBuilder;
 import com.ericsson.wst.core.command.TestCommandExecutor;
 import com.ericsson.wst.core.command.TestCommandFactory;
@@ -27,7 +27,7 @@ public final class AllTests
         suite.addTestSuite(TestCommandLoader.class);
         suite.addTestSuite(TestCommandFactory.class);
         suite.addTestSuite(TestCommandExecutor.class);
-        suite.addTestSuite(TestTestUsedCommand.class);
+        suite.addTestSuite(TestUsedToTestCommand.class);
         suite.addTestSuite(TestWSTWorkflowFactory.class);
         suite.addTestSuite(TestCommunicator.class);
         suite.addTestSuite(TestTelnetConnection.class);

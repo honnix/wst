@@ -8,7 +8,7 @@ import java.util.Map;
 import junit.framework.TestCase;
 
 import com.ericsson.wst.command.Command;
-import com.ericsson.wst.command.TestUsedCommand;
+import com.ericsson.wst.command.UsedToTestCommand;
 import com.ericsson.wst.constant.SystemProperties;
 import com.ericsson.wst.core.network.workflow.MockWorkflowFactory;
 
@@ -51,11 +51,11 @@ public class TestCommandExecutor
         List<Command> cmdList1 = new ArrayList<Command>();
         List<Command> cmdList2 = new ArrayList<Command>();
 
-        cmdList1.add(new TestUsedCommand("-t"));
-        cmdList1.add(new TestUsedCommand("-t"));
+        cmdList1.add(new UsedToTestCommand("-t"));
+        cmdList1.add(new UsedToTestCommand("-t"));
 
-        cmdList2.add(new TestUsedCommand("-t"));
-        cmdList2.add(new TestUsedCommand("-t"));
+        cmdList2.add(new UsedToTestCommand("-t"));
+        cmdList2.add(new UsedToTestCommand("-t"));
 
         workstationMap.put("w1:23", cmdList1);
         workstationMap.put("w2:23", cmdList2);

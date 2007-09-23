@@ -10,10 +10,10 @@ import com.ericsson.wst.core.network.workflow.Communicator;
  * @author ehonlia
  * 
  */
-public class TestUsedCommand
+public class UsedToTestCommand
         extends AbstractCommand
 {
-    public TestUsedCommand(String indicator)
+    public UsedToTestCommand(String indicator)
     {
         super(indicator);
     }
@@ -45,7 +45,7 @@ public class TestUsedCommand
     @Override
     public Command makeSelf()
     {
-        Command testCommand = new TestUsedCommand(indicator);
+        Command testCommand = new UsedToTestCommand(indicator);
 
         return testCommand;
     }

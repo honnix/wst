@@ -10,7 +10,7 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import com.ericsson.wst.command.Command;
-import com.ericsson.wst.command.TestUsedCommand;
+import com.ericsson.wst.command.UsedToTestCommand;
 
 /**
  * @author ehonlia
@@ -49,7 +49,7 @@ public class TestCommandFactory
 
     public void testInsertCommandPrototype()
     {
-        commandFacotry.insertCommandPrototype(new TestUsedCommand("-t"));
+        commandFacotry.insertCommandPrototype(new UsedToTestCommand("-t"));
 
         List<String> indicatorList = new ArrayList<String>();
 
