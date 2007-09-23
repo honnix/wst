@@ -12,6 +12,7 @@ import java.util.Properties;
 
 import com.ericsson.wst.command.Command;
 import com.ericsson.wst.core.command.CommandExecutor;
+import com.ericsson.wst.core.command.CommandFactory;
 import com.ericsson.wst.core.command.CommandLoader;
 import com.ericsson.wst.core.data.WorkstationFileReader;
 import com.ericsson.wst.core.data.WorkstationMapAssembler;
@@ -51,7 +52,7 @@ public class Coordinator
      * @throws PropertiesFileNotFoundException
      */
     private void loadFormatterAndOutput()
-            throws PropertiesFileNotFoundException
+        throws PropertiesFileNotFoundException
     {
         try
         {
@@ -125,7 +126,7 @@ public class Coordinator
     }
 
     public void setUp()
-            throws PropertiesFileNotFoundException
+        throws PropertiesFileNotFoundException
     {
         try
         {
@@ -151,7 +152,7 @@ public class Coordinator
     }
 
     public void testWorstationStatus(String fileName)
-            throws WorkstationFileReadException
+        throws WorkstationFileReadException
     {
         Map<String, List<String>> indicatorMap = null;
 
@@ -168,6 +169,17 @@ public class Coordinator
 
         assembler.assemble(indicatorMap);
         commandExecutor.execute(assembler.get());
+    }
+
+    public List<String> getAllIndicators()
+    {
+        return CommandLoader.getAllIndicators();
+    }
+
+    public String getCommand(String indicator)
+    {
+        return CommandFactory.getInstance().produceCommand(indicator)
+                .getCommand();
     }
 
 }

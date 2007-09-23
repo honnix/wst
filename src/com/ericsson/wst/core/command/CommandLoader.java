@@ -5,6 +5,7 @@
 package com.ericsson.wst.core.command;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -62,6 +63,11 @@ public final class CommandLoader
     public static void unloadCommand()
     {
         CommandFactory.getInstance().clear();
+    }
+    
+    public static List<String> getAllIndicators()
+    {
+        return CommandFactory.getInstance().getAllIndicators();
     }
 
     private CommandLoader()

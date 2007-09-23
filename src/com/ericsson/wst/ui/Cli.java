@@ -6,6 +6,8 @@ package com.ericsson.wst.ui;
 
 import gnu.getopt.Getopt;
 
+import java.util.List;
+
 import com.ericsson.wst.core.facade.Coordinator;
 
 /**
@@ -14,15 +16,17 @@ import com.ericsson.wst.core.facade.Coordinator;
  */
 public class Cli
 {
-
+    private Coordinator coordinator;
+    
     /**
      * @param args
      */
     public static void main(String[] args)
     {
         Cli cli = new Cli();
-        Getopt g = new Getopt("awt", args, "hf:");
+        Getopt g = new Getopt("awt", args, "hlf:");
         String fileName = "";
+        boolean toShowIndicators = false;
 
         int c = -1;
         while ((c = g.getopt()) != -1)
@@ -32,6 +36,9 @@ public class Cli
             case 'h':
             case '?':
                 cli.usage();
+                break;
+            case 'l':
+                toShowIndicators = true;
                 break;
             case 'f':
                 fileName = g.getOptarg();
@@ -43,34 +50,55 @@ public class Cli
             }
         }
 
-        Coordinator coordinator = new Coordinator();
+        cli.coordinator = new Coordinator();
 
         try
         {
-            coordinator.setUp();
-            coordinator.testWorstationStatus(fileName);
+            cli.coordinator.setUp();
+
+            if (toShowIndicators)
+            {
+                cli.showAllIndicators();
+            }
+            else
+            {
+                cli.coordinator.testWorstationStatus(fileName);
+                cli.coordinator.outputWorkstationStatus();
+            }
         }
         catch (Exception e)
         {
             e.printStackTrace();
 
             System.out.println("wst quit abnormally with error code: "
-                    + coordinator.getErrorCode());
+                    + cli.coordinator.getErrorCode());
 
-            coordinator.tearDown();
+            cli.coordinator.tearDown();
 
-            System.exit(coordinator.getErrorCode().getValue());
+            System.exit(cli.coordinator.getErrorCode().getValue());
         }
 
-        coordinator.outputWorkstationStatus();
-        coordinator.tearDown();
+        cli.coordinator.tearDown();
+    }
+
+    private void showAllIndicators()
+    {
+        List<String> indicatorList = coordinator.getAllIndicators();
+
+        for (String indicator : indicatorList)
+        {
+            System.out.println(indicator + "    "
+                    + coordinator.getCommand(indicator));
+        }
     }
 
     private void usage()
     {
         System.out.println("Use: wst -f file");
-        System.out.println("or, no argument to use "
+        System.out.println("     or, no argument to use "
                 + "default workstaion list file \"$HOME/.wst\".");
+        System.out.println("Use: wst -l");
+        System.out.println("     to show all available commands.");
 
         System.exit(0);
     }
