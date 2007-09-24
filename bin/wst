@@ -1,9 +1,14 @@
 #!/bin/sh
 
-app=../;
+separator=";"
+if [ -z `uname | grep -i cygwin` ]; then
+    separator=":"
+fi
+
+app=..;
 classpath=$CLASSPATH
-classpath="$classpath:$app/lib/commons-net-1.4.1.jar"
-classpath="$classpath:$app/lib/java-getopt-1.0.13.jar"
-classpath="$classpath:$app/etc"
-classpath="$classpath:wst-0.2.jar"
+classpath="$classpath$separator$app/lib/commons-net-1.4.1.jar"
+classpath="$classpath$separator$app/lib/java-getopt-1.0.13.jar"
+classpath="$classpath$separator$app/etc"
+classpath="$classpath$separator`ls *.jar`"
 CLASSPATH="$classpath" java com.ericsson.wst.ui.Cli $*
