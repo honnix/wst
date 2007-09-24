@@ -18,13 +18,13 @@ import com.ericsson.wst.error.NetworkException;
 
 /**
  * @author honnix
- *
+ * 
  */
 public class LocalConnection
-    implements Connection
+        implements Connection
 {
     private class MyInputStream
-        extends InputStream
+            extends InputStream
     {
         private StringBuilder sb = new StringBuilder();
 
@@ -32,7 +32,7 @@ public class LocalConnection
 
         @Override
         public int read()
-            throws IOException
+                throws IOException
         {
             if (pos < sb.length())
             {
@@ -60,12 +60,12 @@ public class LocalConnection
                         new BufferedReader(new InputStreamReader(process
                                 .getInputStream()));
                 String line = null;
-                
+
                 while ((line = br.readLine()) != null)
                 {
                     is.sb.append(line).append(SystemProperties.LINE_SEPARATOR);
                 }
-                
+
                 process.waitFor();
 
             }
@@ -80,20 +80,19 @@ public class LocalConnection
 
     private boolean isConnected;
 
-    private OutputStream os = new OutputStream()
-    {
+    private OutputStream os = new OutputStream() {
         private StringBuilder sb = new StringBuilder();
 
         @Override
         public void write(int b)
-            throws IOException
+                throws IOException
         {
             sb.append((char) b);
 
             String rawCommand = sb.toString();
-            int index = -1;
+            int index = rawCommand.indexOf(SystemProperties.LINE_SEPARATOR);
 
-            if ((index = rawCommand.indexOf(SystemProperties.LINE_SEPARATOR)) != -1)
+            if (index != -1)
             {
                 if (rawCommand.indexOf("******") == -1)
                 {
@@ -102,7 +101,7 @@ public class LocalConnection
 
                     processManager.run(Arrays.asList(tmp));
                 }
-                
+
                 sb.delete(0, sb.length());
             }
         }
@@ -116,43 +115,54 @@ public class LocalConnection
         isConnected = false;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.core.network.connection.Connection#close()
      */
     public void close()
-        throws NetworkException
+            throws NetworkException
     {
         isConnected = false;
     }
 
-    /* (non-Javadoc)
-     * @see com.ericsson.wst.core.network.connection.Connection#connect(java.lang.String, int)
+    /*
+     * (non-Javadoc)
+     * 
+     * @see com.ericsson.wst.core.network.connection.Connection#connect(java.lang.String,
+     *      int)
      */
     public void connect(String host, int port)
-        throws NetworkException
+            throws NetworkException
     {
         isConnected = true;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.core.network.connection.Connection#getInputStream()
      */
     public InputStream getInputStream()
-        throws NetworkException
+            throws NetworkException
     {
         return is;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.core.network.connection.Connection#getOutputStream()
      */
     public OutputStream getOutputStream()
-        throws NetworkException
+            throws NetworkException
     {
         return os;
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.core.network.connection.Connection#isConnected()
      */
     public boolean isConnected()

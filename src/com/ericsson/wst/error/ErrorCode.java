@@ -11,7 +11,8 @@ package com.ericsson.wst.error;
 public enum ErrorCode
 {
     PROPERTIES_FILE_NOT_FOUND(1),
-    WORKSTATION_FILE_READ_ERROR(2);
+    WORKSTATION_FILE_READ_ERROR(2),
+    COMMAND_EXECUTION_INTERRUPTED(3);
 
     private int value;
 

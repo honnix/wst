@@ -14,7 +14,7 @@ import com.ericsson.wst.error.NetworkException;
  * 
  */
 public class WSTWorkflow
-    implements Workflow
+        implements Workflow
 {
     private Communicator communicator;
 
@@ -31,8 +31,9 @@ public class WSTWorkflow
 
         try
         {
-            connection = (Connection) Class.forName(
-                    properties.getProperty("connection")).newInstance();
+            connection =
+                    (Connection) Class.forName(
+                            properties.getProperty("connection")).newInstance();
         }
         catch (Exception e)
         {
@@ -50,13 +51,11 @@ public class WSTWorkflow
         return connection.getClass();
     }
 
-    public void login(String host)
+    public void login(String host, int port)
     {
         try
         {
-            String[] hostSettings = host.split(":");
-            connection.connect(hostSettings[0], Integer
-                    .valueOf(hostSettings[1]));
+            connection.connect(host, port);
         }
         catch (NetworkException e)
         {
@@ -67,8 +66,9 @@ public class WSTWorkflow
         {
             if (connection.isConnected())
             {
-                communicator = new Communicator(connection.getInputStream(),
-                        connection.getOutputStream());
+                communicator =
+                        new Communicator(connection.getInputStream(),
+                                connection.getOutputStream());
             }
             else
             {

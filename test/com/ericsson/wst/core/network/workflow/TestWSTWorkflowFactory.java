@@ -14,7 +14,7 @@ import com.ericsson.wst.util.PropertiesLoader;
  * 
  */
 public class TestWSTWorkflowFactory
-    extends TestCase
+        extends TestCase
 {
     private WorkflowFactory workflowFactory;
 
@@ -25,7 +25,7 @@ public class TestWSTWorkflowFactory
      */
     @Override
     protected void setUp()
-        throws Exception
+            throws Exception
     {
         super.setUp();
 
@@ -39,7 +39,7 @@ public class TestWSTWorkflowFactory
      */
     @Override
     protected void tearDown()
-        throws Exception
+            throws Exception
     {
         super.tearDown();
     }
@@ -64,8 +64,8 @@ public class TestWSTWorkflowFactory
             String connection =
                     PropertiesLoader.loadProperties("network.properties")
                             .getProperty("connection");
-            Class<?> clazz = (Class<?>) Class.forName(connection);
-            
+            Class<?> clazz = Class.forName(connection);
+
             assertEquals(clazz, workflow.getConnectionClass());
         }
         catch (Exception e)

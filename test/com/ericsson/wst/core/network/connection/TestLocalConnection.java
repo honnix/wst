@@ -13,27 +13,33 @@ import junit.framework.TestCase;
 
 /**
  * @author honnix
- *
+ * 
  */
 public class TestLocalConnection
-    extends TestCase
+        extends TestCase
 {
     private Connection connection = new LocalConnection();
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see junit.framework.TestCase#setUp()
      */
+    @Override
     protected void setUp()
-        throws Exception
+            throws Exception
     {
         super.setUp();
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see junit.framework.TestCase#tearDown()
      */
+    @Override
     protected void tearDown()
-        throws Exception
+            throws Exception
     {
         super.tearDown();
     }
@@ -71,8 +77,9 @@ public class TestLocalConnection
             assertTrue(false);
         }
 
-        assertEquals("Linux" + SystemProperties.LINE_SEPARATOR, communicator.sendAndReceive("uname"));
-        
+        assertEquals("a" + SystemProperties.LINE_SEPARATOR, communicator
+                .sendAndReceive("echo a"));
+
         try
         {
             connection.close();
@@ -80,7 +87,7 @@ public class TestLocalConnection
         catch (NetworkException e)
         {
             e.printStackTrace();
-            
+
             assertTrue(false);
         }
     }

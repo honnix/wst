@@ -64,7 +64,7 @@ public class MockWorkflow
      * @see com.ericsson.wst.core.workflow.Workflow#login(java.lang.String,
      *      java.lang.String)
      */
-    public void login(String host)
+    public void login(String host, int port)
     {
     }
 

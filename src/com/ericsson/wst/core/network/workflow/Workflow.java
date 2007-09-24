@@ -16,7 +16,7 @@ public interface Workflow
 
     Class<? extends Connection> getConnectionClass();
 
-    void login(String host);
+    void login(String host, int port);
 
     void logout();
 }

@@ -64,7 +64,7 @@ public final class CommandLoader
     {
         CommandFactory.getInstance().clear();
     }
-    
+
     public static List<String> getAllIndicators()
     {
         return CommandFactory.getInstance().getAllIndicators();

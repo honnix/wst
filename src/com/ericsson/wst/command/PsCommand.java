@@ -9,17 +9,19 @@ import com.ericsson.wst.core.network.workflow.Communicator;
 
 /**
  * @author honnix
- *
+ * 
  */
 public class PsCommand
-    extends AbstractCommand
+        extends AbstractCommand
 {
     public PsCommand(String indicator)
     {
         super(indicator);
     }
-    
-    /* (non-Javadoc)
+
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.command.AbstractCommand#execute(com.ericsson.wst.core.network.workflow.Communicator)
      */
     @Override
@@ -30,7 +32,9 @@ public class PsCommand
         responseList.add(response);
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.command.AbstractCommand#getCommand()
      */
     @Override
@@ -39,7 +43,9 @@ public class PsCommand
         return "ps -elf";
     }
 
-    /* (non-Javadoc)
+    /*
+     * (non-Javadoc)
+     * 
      * @see com.ericsson.wst.command.AbstractCommand#makeSelf()
      */
     @Override

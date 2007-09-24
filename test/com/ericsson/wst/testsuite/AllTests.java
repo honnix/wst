@@ -9,7 +9,7 @@ import com.ericsson.wst.core.command.TestCommandExecutor;
 import com.ericsson.wst.core.command.TestCommandFactory;
 import com.ericsson.wst.core.command.TestCommandLoader;
 import com.ericsson.wst.core.data.TestWorkstationFileReader;
-import com.ericsson.wst.core.data.TestWorkstationMapAssembler;
+import com.ericsson.wst.core.data.TestWorkstationListAssembler;
 import com.ericsson.wst.core.network.connection.TestLocalConnection;
 import com.ericsson.wst.core.network.connection.TestTelnetConnection;
 import com.ericsson.wst.core.network.workflow.TestCommunicator;
@@ -31,7 +31,7 @@ public final class AllTests
         suite.addTestSuite(TestWSTWorkflowFactory.class);
         suite.addTestSuite(TestCommunicator.class);
         suite.addTestSuite(TestTelnetConnection.class);
-        suite.addTestSuite(TestWorkstationMapAssembler.class);
+        suite.addTestSuite(TestWorkstationListAssembler.class);
         suite.addTestSuite(TestWorkstationFileReader.class);
         suite.addTestSuite(TestLocalConnection.class);
         // $JUnit-END$

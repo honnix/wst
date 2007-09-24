@@ -44,7 +44,7 @@ public class TestUsedToTestCommand
             assertTrue(false);
         }
 
-        workflow.login(null);
+        workflow.login("localhost", 23);
         testUsedCommand.execute(workflow.getCommunicator());
         workflow.logout();
 

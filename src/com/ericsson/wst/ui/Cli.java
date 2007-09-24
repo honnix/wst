@@ -17,7 +17,7 @@ import com.ericsson.wst.core.facade.Coordinator;
 public class Cli
 {
     private Coordinator coordinator;
-    
+
     /**
      * @param args
      */

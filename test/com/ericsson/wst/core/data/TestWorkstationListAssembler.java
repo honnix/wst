@@ -1,5 +1,5 @@
 /**
- * TestWorkstationMapAssembler.java
+ * TestWorkstationListAssembler.java
  * Sep 17, 2007
  */
 package com.ericsson.wst.core.data;
@@ -18,10 +18,10 @@ import com.ericsson.wst.core.command.CommandLoader;
  * @author ehonlia
  * 
  */
-public class TestWorkstationMapAssembler
+public class TestWorkstationListAssembler
         extends TestCase
 {
-    private WorkstationMapAssembler assembler;
+    private WorkstationListAssembler assembler;
 
     /*
      * (non-Javadoc)
@@ -35,7 +35,7 @@ public class TestWorkstationMapAssembler
         super.setUp();
 
         CommandLoader.loadCommand();
-        assembler = new WorkstationMapAssembler();
+        assembler = new WorkstationListAssembler();
     }
 
     /*
@@ -73,10 +73,10 @@ public class TestWorkstationMapAssembler
         indicatorMap.put("w2:23", indicatorList2);
 
         assembler.assemble(indicatorMap);
-        Map<String, List<Command>> workstationMap = assembler.get();
+        List<Workstation> workstationList = assembler.get();
 
-        List<Command> cmdList1 = workstationMap.get("w1:23");
-        List<Command> cmdList2 = workstationMap.get("w2:23");
+        List<Command> cmdList1 = workstationList.get(0).getCommandList();
+        List<Command> cmdList2 = workstationList.get(1).getCommandList();
 
         assertEquals("-t", cmdList1.get(0).getIndicator());
         assertEquals("-w", cmdList1.get(1).getIndicator());

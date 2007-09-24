@@ -5,12 +5,14 @@
  */
 package com.ericsson.wst.core.command;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 import com.ericsson.wst.command.Command;
+import com.ericsson.wst.core.data.Workstation;
 import com.ericsson.wst.core.network.workflow.Workflow;
+import com.ericsson.wst.error.CommandExecutionException;
 
 /**
  * @author honnix
@@ -18,30 +20,63 @@ import com.ericsson.wst.core.network.workflow.Workflow;
  */
 public class CommandExecutor
 {
+    private class ExecuteThread
+            extends Thread
+    {
+        private List<Workstation> workstationList;
+
+        public ExecuteThread(List<Workstation> workstationList)
+        {
+            this.workstationList = workstationList;
+        }
+
+        public void run()
+        {
+            for (Workstation workstation : workstationList)
+            {
+                workflow.login(workstation.getHost(), workstation.getPort());
+
+                for (Command command : workstation.getCommandList())
+                {
+                    command.execute(workflow.getCommunicator());
+                }
+
+                workflow.logout();
+
+                executedQueue.add(workstation);
+            }
+        }
+
+    }
+
+    private BlockingQueue<Workstation> executedQueue;
+
     private Workflow workflow;
 
     public CommandExecutor(Workflow workflow)
     {
         this.workflow = workflow;
+        executedQueue = new LinkedBlockingQueue<Workstation>();
     }
 
-    public void execute(Map<String, List<Command>> workstationMap)
+    public void execute(List<Workstation> workstationList)
     {
-        Iterator<String> iter = workstationMap.keySet().iterator();
+        ExecuteThread executeThread = new ExecuteThread(workstationList);
 
-        while (iter.hasNext())
+        executeThread.start();
+    }
+
+    public Workstation getExecutedWorkstation()
+            throws CommandExecutionException
+    {
+        try
         {
-            String host = iter.next();
-            List<Command> commandList = workstationMap.get(host);
-
-            workflow.login(host);
-
-            for (Command command : commandList)
-            {
-                command.execute(workflow.getCommunicator());
-            }
-
-            workflow.logout();
+            return executedQueue.take();
+        }
+        catch (InterruptedException e)
+        {
+            throw new CommandExecutionException(
+                    "Command execution thread has been interrupted.", e);
         }
     }
 }

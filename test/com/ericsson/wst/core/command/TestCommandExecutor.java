@@ -1,16 +1,16 @@
 package com.ericsson.wst.core.command;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import junit.framework.TestCase;
 
 import com.ericsson.wst.command.Command;
 import com.ericsson.wst.command.UsedToTestCommand;
 import com.ericsson.wst.constant.SystemProperties;
+import com.ericsson.wst.core.data.Workstation;
 import com.ericsson.wst.core.network.workflow.MockWorkflowFactory;
+import com.ericsson.wst.error.CommandExecutionException;
 
 public class TestCommandExecutor
         extends TestCase
@@ -46,8 +46,7 @@ public class TestCommandExecutor
 
     public void testExecute()
     {
-        Map<String, List<Command>> workstationMap =
-                new HashMap<String, List<Command>>();
+        List<Workstation> workstationList = new ArrayList<Workstation>();
         List<Command> cmdList1 = new ArrayList<Command>();
         List<Command> cmdList2 = new ArrayList<Command>();
 
@@ -57,20 +56,39 @@ public class TestCommandExecutor
         cmdList2.add(new UsedToTestCommand("-t"));
         cmdList2.add(new UsedToTestCommand("-t"));
 
-        workstationMap.put("w1:23", cmdList1);
-        workstationMap.put("w2:23", cmdList2);
+        workstationList.add(new Workstation("w1", 23, cmdList1));
+        workstationList.add(new Workstation("w2", 23, cmdList1));
 
-        commandExecutor.execute(workstationMap);
+        commandExecutor.execute(workstationList);
 
+        Workstation workstation = null;
+        try
+        {
+            workstation = commandExecutor.getExecutedWorkstation();
+        }
+        catch (CommandExecutionException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w1:23").get(0).getResponseList().get(0));
+                workstation.getCommandList().get(0).getResponseList().get(0));
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w1:23").get(1).getResponseList().get(0));
+                workstation.getCommandList().get(1).getResponseList().get(0));
 
+        try
+        {
+            workstation = commandExecutor.getExecutedWorkstation();
+        }
+        catch (CommandExecutionException e)
+        {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w2:23").get(0).getResponseList().get(0));
+                workstation.getCommandList().get(0).getResponseList().get(0));
         assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
-                workstationMap.get("w2:23").get(1).getResponseList().get(0));
+                workstation.getCommandList().get(1).getResponseList().get(0));
 
     }
 
