@@ -12,7 +12,9 @@ import java.util.concurrent.LinkedBlockingQueue;
 import com.ericsson.wst.command.Command;
 import com.ericsson.wst.core.data.Workstation;
 import com.ericsson.wst.core.network.workflow.Workflow;
+import com.ericsson.wst.core.network.workflow.WorkflowFactory;
 import com.ericsson.wst.error.CommandExecutionException;
+import com.ericsson.wst.error.PropertiesFileNotFoundException;
 
 /**
  * @author honnix
@@ -23,46 +25,51 @@ public class CommandExecutor
     private class ExecuteThread
             extends Thread
     {
-        private List<Workstation> workstationList;
+        private Workstation workstation;
 
-        public ExecuteThread(List<Workstation> workstationList)
+        private Workflow workflow;
+
+        public ExecuteThread(Workstation workstation, Workflow workflow)
         {
-            this.workstationList = workstationList;
+            this.workstation = workstation;
+            this.workflow = workflow;
         }
 
         @Override
         public void run()
         {
-            for (Workstation workstation : workstationList)
+            workflow.login(workstation.getHost(), workstation.getPort());
+
+            for (Command command : workstation.getCommandList())
             {
-                workflow.login(workstation.getHost(), workstation.getPort());
-
-                for (Command command : workstation.getCommandList())
-                {
-                    command.execute(workflow.getCommunicator());
-                }
-
-                workflow.logout();
-
-                executedQueue.add(workstation);
+                command.execute(workflow.getCommunicator());
             }
+
+            workflow.logout();
+
+            executedQueue.add(workstation);
         }
 
     }
 
     private BlockingQueue<Workstation> executedQueue;
 
-    private Workflow workflow;
+    private WorkflowFactory workflowFactory;
 
-    public CommandExecutor(Workflow workflow)
+    public CommandExecutor(WorkflowFactory workflowFactory)
     {
-        this.workflow = workflow;
+        this.workflowFactory = workflowFactory;
         executedQueue = new LinkedBlockingQueue<Workstation>();
     }
 
     public void execute(List<Workstation> workstationList)
+            throws PropertiesFileNotFoundException
     {
-        new ExecuteThread(workstationList).start();
+        for (Workstation workstation : workstationList)
+        {
+            new ExecuteThread(workstation, workflowFactory.getWorkflow())
+                    .start();
+        }
     }
 
     public Workstation getExecutedWorkstation()

@@ -119,8 +119,6 @@ public class Coordinator
             }
             catch (CommandExecutionException e)
             {
-                e.printStackTrace();
-
                 setErrorCode(ErrorCode.COMMAND_EXECUTION_INTERRUPTED);
 
                 throw new CommandExecutionException(
@@ -145,8 +143,7 @@ public class Coordinator
         try
         {
             CommandLoader.loadCommand();
-            commandExecutor =
-                    new CommandExecutor(new WSTWorkflowFactory().getWorkflow());
+            commandExecutor = new CommandExecutor(new WSTWorkflowFactory());
         }
         catch (PropertiesFileNotFoundException e)
         {
@@ -166,7 +163,8 @@ public class Coordinator
     }
 
     public void testWorstationStatus(String fileName)
-            throws WorkstationFileReadException
+            throws WorkstationFileReadException,
+            PropertiesFileNotFoundException
     {
         Map<String, List<String>> indicatorMap = null;
 
@@ -182,7 +180,17 @@ public class Coordinator
         }
 
         assembler.assemble(indicatorMap);
-        commandExecutor.execute(assembler.get());
+
+        try
+        {
+            commandExecutor.execute(assembler.get());
+        }
+        catch (PropertiesFileNotFoundException e)
+        {
+            setErrorCode(ErrorCode.PROPERTIES_FILE_NOT_FOUND);
+
+            throw e;
+        }
     }
 
     public List<String> getAllIndicators()

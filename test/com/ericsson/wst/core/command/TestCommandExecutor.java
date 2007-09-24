@@ -11,6 +11,7 @@ import com.ericsson.wst.constant.SystemProperties;
 import com.ericsson.wst.core.data.Workstation;
 import com.ericsson.wst.core.network.workflow.MockWorkflowFactory;
 import com.ericsson.wst.error.CommandExecutionException;
+import com.ericsson.wst.error.PropertiesFileNotFoundException;
 
 public class TestCommandExecutor
         extends TestCase
@@ -29,7 +30,7 @@ public class TestCommandExecutor
         super.setUp();
 
         commandExecutor =
-                new CommandExecutor(new MockWorkflowFactory().getWorkflow());
+                new CommandExecutor(new MockWorkflowFactory());
     }
 
     /*
@@ -59,7 +60,15 @@ public class TestCommandExecutor
         workstationList.add(new Workstation("w1", 23, cmdList1));
         workstationList.add(new Workstation("w2", 23, cmdList1));
 
-        commandExecutor.execute(workstationList);
+        try
+        {
+            commandExecutor.execute(workstationList);
+        }
+        catch (PropertiesFileNotFoundException e1)
+        {
+            // TODO Auto-generated catch block
+            e1.printStackTrace();
+        }
 
         Workstation workstation = null;
         try
