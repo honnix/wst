@@ -1,2 +1,2 @@
 @echo off
-java -cp ../lib/commons-net-1.4.1.jar;../lib/java-getopt-1.0.13.jar;../etc;wst-0.2.1.jar com.ericsson.wst.ui.Cli %1 %2 %3 %4 %5 %6 %7 %8 %9
+java -cp ../lib/commons-net-1.4.1.jar;../lib/java-getopt-1.0.13.jar;../etc;wst-0.2.2.jar com.ericsson.wst.ui.Cli %1 %2 %3 %4 %5 %6 %7 %8 %9

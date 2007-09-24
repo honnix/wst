@@ -14,7 +14,7 @@
 	<property name="etc.dir" value="etc" />
 	<property name="dist.dir" value="dist" />
 	<property name="dist.name" value="${ant.project.name}" />
-	<property name="dist.version" value="0.2.1" />
+	<property name="dist.version" value="0.2.2" />
 	<property name="main.class" value="com.ericsson.wst.ui.Cli" />
 	<property name="failonerror" value="true" />
 	<property name="fork" value="true" />

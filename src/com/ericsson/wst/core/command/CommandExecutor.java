@@ -30,6 +30,7 @@ public class CommandExecutor
             this.workstationList = workstationList;
         }
 
+        @Override
         public void run()
         {
             for (Workstation workstation : workstationList)
@@ -61,9 +62,7 @@ public class CommandExecutor
 
     public void execute(List<Workstation> workstationList)
     {
-        ExecuteThread executeThread = new ExecuteThread(workstationList);
-
-        executeThread.start();
+        new ExecuteThread(workstationList).start();
     }
 
     public Workstation getExecutedWorkstation()

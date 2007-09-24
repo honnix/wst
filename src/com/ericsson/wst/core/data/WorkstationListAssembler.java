@@ -44,4 +44,8 @@ public class WorkstationListAssembler
         return workstationList;
     }
 
+    public void clear()
+    {
+        workstationList.clear();
+    }
 }

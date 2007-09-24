@@ -6,7 +6,7 @@ package com.ericsson.wst.error;
 
 /**
  * @author ehonlia
- *
+ * 
  */
 public class CommandExecutionException
         extends Exception

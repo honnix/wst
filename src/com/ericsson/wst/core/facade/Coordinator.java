@@ -107,12 +107,12 @@ public class Coordinator
     }
 
     public void outputWorkstationStatus()
-        throws CommandExecutionException
+            throws CommandExecutionException
     {
         for (int i = 0; i < assembler.get().size(); ++i)
         {
             Workstation workstation = null;
-            
+
             try
             {
                 workstation = commandExecutor.getExecutedWorkstation();
@@ -120,7 +120,7 @@ public class Coordinator
             catch (CommandExecutionException e)
             {
                 e.printStackTrace();
-                
+
                 setErrorCode(ErrorCode.COMMAND_EXECUTION_INTERRUPTED);
 
                 throw new CommandExecutionException(
