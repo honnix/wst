@@ -109,6 +109,8 @@ public class Coordinator
     public void outputWorkstationStatus()
             throws CommandExecutionException
     {
+        CommandExecutionException toThrow = null;
+        
         for (int i = 0; i < assembler.get().size(); ++i)
         {
             Workstation workstation = null;
@@ -120,9 +122,9 @@ public class Coordinator
             catch (CommandExecutionException e)
             {
                 setErrorCode(ErrorCode.COMMAND_EXECUTION_INTERRUPTED);
-
-                throw new CommandExecutionException(
-                        "Properties file not found in CLASSPATH.", e);
+                toThrow = e;
+                
+                continue;
             }
 
             output.setHost(workstation.getHost() + ":" + workstation.getPort());
@@ -134,6 +136,11 @@ public class Coordinator
                                 .getResponseList());
                 output.output(formattedResponseList);
             }
+        }
+
+        if (toThrow != null)
+        {
+            throw toThrow;
         }
     }
 

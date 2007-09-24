@@ -23,7 +23,7 @@ import com.ericsson.wst.error.PropertiesFileNotFoundException;
 public class CommandExecutor
 {
     private class ExecuteThread
-            extends Thread
+        extends Thread
     {
         private Workstation workstation;
 
@@ -63,7 +63,7 @@ public class CommandExecutor
     }
 
     public void execute(List<Workstation> workstationList)
-            throws PropertiesFileNotFoundException
+        throws PropertiesFileNotFoundException
     {
         for (Workstation workstation : workstationList)
         {
@@ -73,7 +73,7 @@ public class CommandExecutor
     }
 
     public Workstation getExecutedWorkstation()
-            throws CommandExecutionException
+        throws CommandExecutionException
     {
         try
         {
