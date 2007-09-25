@@ -24,7 +24,7 @@ public class Cli
     public static void main(String[] args)
     {
         Cli cli = new Cli();
-        Getopt g = new Getopt("awt", args, "hlf:");
+        Getopt g = new Getopt("wst", args, "hlf:");
         String fileName = "";
         boolean toShowIndicators = false;
 
