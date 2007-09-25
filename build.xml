@@ -26,6 +26,7 @@
 		<pathelement location="${lib.dir}/java-getopt-1.0.13.jar" />
 		<pathelement location="${lib.dir}/junit.jar" />
 		<pathelement location="${etc.dir}" />
+		<pathelement location="${ext.dir}" />
 	</path>
 
 	<target name="init">
