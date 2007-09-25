@@ -5,10 +5,19 @@ if [ -z `uname | grep -i cygwin` ]; then
     separator=":"
 fi
 
-app=..;
+bin=`dirname $0`
+app=$bin/..;
+
 classpath=$CLASSPATH
+
 classpath="$classpath$separator$app/lib/commons-net-1.4.1.jar"
 classpath="$classpath$separator$app/lib/java-getopt-1.0.13.jar"
 classpath="$classpath$separator$app/etc"
-classpath="$classpath$separator`ls *.jar`"
+
+classpath="$classpath$separator`ls $bin/*.jar`"
+
+for f in `find $bin/../ext -name "*.jar"`; do
+    classpath="$classpath$separator$f"
+done
+
 CLASSPATH="$classpath" java com.ericsson.wst.ui.Cli $*

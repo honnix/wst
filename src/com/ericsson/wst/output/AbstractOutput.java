@@ -14,6 +14,8 @@ public abstract class AbstractOutput
         implements Output
 {
     protected String host;
+    
+    protected int port;
 
     /*
      * (non-Javadoc)
@@ -30,6 +32,15 @@ public abstract class AbstractOutput
     public void setHost(String host)
     {
         this.host = host;
+    }
+    
+    /*
+     * (non-Javadoc)
+     * @see com.ericsson.wst.output.Output#setPort(int)
+     */
+    public void setPort(int port)
+    {
+        this.port = port;
     }
 
 }

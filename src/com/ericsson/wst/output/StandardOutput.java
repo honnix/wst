@@ -30,7 +30,7 @@ public class StandardOutput
         }
 
         System.out.println(sb1.toString());
-        System.out.println(host);
+        System.out.println(host + ":" + port);
         System.out.println(sb1.toString());
 
         StringBuilder sb2 = new StringBuilder();

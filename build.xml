@@ -12,6 +12,7 @@
 	<property name="lib.dir" value="lib" />
 	<property name="bin.dir" value="bin" />
 	<property name="etc.dir" value="etc" />
+	<property name="ext.dir" value="ext" />
 	<property name="dist.dir" value="dist" />
 	<property name="dist.name" value="${ant.project.name}" />
 	<property name="dist.version" value="0.2.3" />
@@ -80,6 +81,7 @@
 		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}" />
 		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${etc.dir}" />
 		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${lib.dir}" />
+		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${ext.dir}" />
 		<copy todir="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}">
 			<fileset dir="${bin.dir}" />
 		</copy>

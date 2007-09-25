@@ -127,7 +127,8 @@ public class Coordinator
                 continue;
             }
 
-            output.setHost(workstation.getHost() + ":" + workstation.getPort());
+            output.setHost(workstation.getHost());
+            output.setPort(workstation.getPort());
 
             for (Command command : workstation.getCommandList())
             {
