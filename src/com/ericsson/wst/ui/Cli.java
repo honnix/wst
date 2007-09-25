@@ -71,7 +71,7 @@ public class Cli
             e.printStackTrace();
 
             System.out.println("wst quit abnormally with error code: "
-                    + cli.coordinator.getErrorCode());
+                    + cli.coordinator.getErrorCode().getValue());
 
             cli.coordinator.tearDown();
 
