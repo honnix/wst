@@ -118,7 +118,7 @@ public class LocalConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.connection.Connection#close()
+     * @see com.honnix.wst.core.network.connection.Connection#close()
      */
     public void close()
             throws NetworkException
@@ -129,7 +129,7 @@ public class LocalConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.connection.Connection#connect(java.lang.String,
+     * @see com.honnix.wst.core.network.connection.Connection#connect(java.lang.String,
      *      int)
      */
     public void connect(String host, int port)
@@ -141,7 +141,7 @@ public class LocalConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.connection.Connection#getInputStream()
+     * @see com.honnix.wst.core.network.connection.Connection#getInputStream()
      */
     public InputStream getInputStream()
             throws NetworkException
@@ -152,7 +152,7 @@ public class LocalConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.connection.Connection#getOutputStream()
+     * @see com.honnix.wst.core.network.connection.Connection#getOutputStream()
      */
     public OutputStream getOutputStream()
             throws NetworkException
@@ -163,7 +163,7 @@ public class LocalConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.connection.Connection#isConnected()
+     * @see com.honnix.wst.core.network.connection.Connection#isConnected()
      */
     public boolean isConnected()
     {

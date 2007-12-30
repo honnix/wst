@@ -20,7 +20,7 @@ public class StandardFormatter
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.formatter.Formatter#format(java.util.List)
+     * @see com.honnix.wst.formatter.Formatter#format(java.util.List)
      */
     public List<String> format(String command, List<String> responseList)
     {

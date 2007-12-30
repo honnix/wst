@@ -21,7 +21,7 @@ public class MockConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.Connection#close()
+     * @see com.honnix.wst.core.network.Connection#close()
      */
     public void close()
             throws NetworkException
@@ -33,7 +33,7 @@ public class MockConnection
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.network.Connection#connect()
+     * @see com.honnix.wst.core.network.Connection#connect()
      */
     public void connect(String host, int port)
             throws NetworkException

@@ -21,7 +21,7 @@ public class UnameCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#execute(com.ericsson.wst.core.workflow.Communicator)
+     * @see com.honnix.wst.command.AbstractCommand#execute(com.honnix.wst.core.workflow.Communicator)
      */
     @Override
     public void execute(Communicator communicator)
@@ -40,7 +40,7 @@ public class UnameCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#makeSelf()
+     * @see com.honnix.wst.command.AbstractCommand#makeSelf()
      */
     @Override
     public Command makeSelf()

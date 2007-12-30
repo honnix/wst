@@ -29,7 +29,7 @@ public abstract class AbstractCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.Command#execute(com.ericsson.wst.core.workflow.Communicator)
+     * @see com.honnix.wst.command.Command#execute(com.honnix.wst.core.workflow.Communicator)
      */
     public abstract void execute(Communicator communicator);
 
@@ -38,7 +38,7 @@ public abstract class AbstractCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.Command#getIndicator()
+     * @see com.honnix.wst.command.Command#getIndicator()
      */
     public String getIndicator()
     {
@@ -48,7 +48,7 @@ public abstract class AbstractCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.Command#getResponse()
+     * @see com.honnix.wst.command.Command#getResponse()
      */
     public List<String> getResponseList()
     {
@@ -58,7 +58,7 @@ public abstract class AbstractCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.Command#makeSelf()
+     * @see com.honnix.wst.command.Command#makeSelf()
      */
     public abstract Command makeSelf();
 

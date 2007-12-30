@@ -20,7 +20,7 @@ public final class AllTests
 
     public static Test suite()
     {
-        TestSuite suite = new TestSuite("Test for com.ericsson.wst.testsuite");
+        TestSuite suite = new TestSuite("Test for com.honnix.wst.testsuite");
 
         // $JUnit-BEGIN$
         suite.addTestSuite(TestCommandBuilder.class);

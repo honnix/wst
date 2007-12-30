@@ -22,7 +22,7 @@ public class PsCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#execute(com.ericsson.wst.core.network.workflow.Communicator)
+     * @see com.honnix.wst.command.AbstractCommand#execute(com.honnix.wst.core.network.workflow.Communicator)
      */
     @Override
     public void execute(Communicator communicator)
@@ -35,7 +35,7 @@ public class PsCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#getCommand()
+     * @see com.honnix.wst.command.AbstractCommand#getCommand()
      */
     @Override
     public String getCommand()
@@ -46,7 +46,7 @@ public class PsCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#makeSelf()
+     * @see com.honnix.wst.command.AbstractCommand#makeSelf()
      */
     @Override
     public Command makeSelf()

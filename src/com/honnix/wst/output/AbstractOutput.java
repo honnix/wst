@@ -20,14 +20,14 @@ public abstract class AbstractOutput
     /*
     * (non-Javadoc)
     * 
-    * @see com.ericsson.wst.output.Output#output(java.util.List)
+    * @see com.honnix.wst.output.Output#output(java.util.List)
     */
     public abstract void output(List<String> responseList);
 
     /*
     * (non-Javadoc)
     * 
-    * @see com.ericsson.wst.output.Output#setHost(java.lang.String)
+    * @see com.honnix.wst.output.Output#setHost(java.lang.String)
     */
     public void setHost(String host)
     {
@@ -36,7 +36,7 @@ public abstract class AbstractOutput
 
     /*
     * (non-Javadoc)
-    * @see com.ericsson.wst.output.Output#setPort(int)
+    * @see com.honnix.wst.output.Output#setPort(int)
     */
     public void setPort(int port)
     {

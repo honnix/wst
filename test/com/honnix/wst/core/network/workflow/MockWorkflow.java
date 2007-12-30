@@ -48,7 +48,7 @@ public class MockWorkflow
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.workflow.Workflow#getCommunicator()
+     * @see com.honnix.wst.core.workflow.Workflow#getCommunicator()
      */
     public Communicator getCommunicator()
     {
@@ -63,7 +63,7 @@ public class MockWorkflow
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.workflow.Workflow#login(java.lang.String,
+     * @see com.honnix.wst.core.workflow.Workflow#login(java.lang.String,
      *      java.lang.String)
      */
     public void login(String host, int port)
@@ -73,7 +73,7 @@ public class MockWorkflow
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.workflow.Workflow#logout()
+     * @see com.honnix.wst.core.workflow.Workflow#logout()
      */
     public void logout()
     {

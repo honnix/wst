@@ -23,7 +23,7 @@ public class MockWorkflowFactory
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.core.workflow.WorkflowFactory#getWorkflow()
+     * @see com.honnix.wst.core.workflow.WorkflowFactory#getWorkflow()
      */
     public Workflow getWorkflow()
             throws PropertiesFileNotFoundException

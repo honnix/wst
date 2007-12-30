@@ -21,7 +21,7 @@ public class UsedToTestCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#execute()
+     * @see com.honnix.wst.command.AbstractCommand#execute()
      */
     @Override
     public void execute(Communicator communicator)
@@ -40,7 +40,7 @@ public class UsedToTestCommand
     /*
      * (non-Javadoc)
      * 
-     * @see com.ericsson.wst.command.AbstractCommand#makeSelf()
+     * @see com.honnix.wst.command.AbstractCommand#makeSelf()
      */
     @Override
     public Command makeSelf()

@@ -17,7 +17,7 @@ public class StandardOutput
     /*
     * (non-Javadoc)
     * 
-    * @see com.ericsson.wst.output.AbstractOutput#output(java.util.List)
+    * @see com.honnix.wst.output.AbstractOutput#output(java.util.List)
     */
     @Override
     public void output(List<String> responseList)
