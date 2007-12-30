@@ -6,8 +6,6 @@ package com.honnix.wst.output;
 
 import java.util.List;
 
-import com.ericsson.wst.output.AbstractOutput;
-
 /**
  * @author ehonlia
  * 

@@ -8,7 +8,6 @@ import gnu.getopt.Getopt;
 
 import java.util.List;
 
-import com.ericsson.wst.ui.Cli;
 import com.honnix.wst.core.facade.Coordinator;
 
 /**
