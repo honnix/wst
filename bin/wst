@@ -20,4 +20,4 @@ for f in `find $bin/../ext -name "*.jar"`; do
     classpath="$classpath$separator$f"
 done
 
-CLASSPATH="$classpath" java com.ericsson.wst.ui.Cli $*
+CLASSPATH="$classpath" java com.honnix.wst.ui.Cli $*

@@ -16,7 +16,7 @@
 	<property name="dist.dir" value="dist" />
 	<property name="dist.name" value="${ant.project.name}" />
 	<property name="dist.version" value="0.2.3" />
-	<property name="main.class" value="com.ericsson.wst.ui.Cli" />
+	<property name="main.class" value="com.honnix.wst.ui.Cli" />
 	<property name="failonerror" value="true" />
 	<property name="fork" value="true" />
 
@@ -99,7 +99,7 @@
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" printsummary="withOutAndErr">
 			<formatter type="xml" />
-			<test name="com.ericsson.wst.core.data.TestWorkstationFileReader" todir="${junit.output.dir}" />
+			<test name="com.honnix.wst.core.data.TestWorkstationFileReader" todir="${junit.output.dir}" />
 			<classpath refid="classpath" />
 		</junit>
 	</target>
@@ -108,7 +108,7 @@
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" printsummary="withOutAndErr">
 			<formatter type="xml" />
-			<test name="com.ericsson.wst.core.command.TestCommandExecutor" todir="${junit.output.dir}" />
+			<test name="com.honnix.wst.core.command.TestCommandExecutor" todir="${junit.output.dir}" />
 			<classpath refid="classpath" />
 		</junit>
 	</target>
@@ -117,7 +117,7 @@
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" printsummary="withOutAndErr">
 			<formatter type="xml" />
-			<test name="com.ericsson.wst.core.data.TestWorkstationMapAssembler" todir="${junit.output.dir}" />
+			<test name="com.honnix.wst.core.data.TestWorkstationMapAssembler" todir="${junit.output.dir}" />
 			<classpath refid="classpath" />
 		</junit>
 	</target>
@@ -126,7 +126,7 @@
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" printsummary="withOutAndErr">
 			<formatter type="xml" />
-			<test name="com.ericsson.wst.testsuite.AllTests" todir="${junit.output.dir}" />
+			<test name="com.honnix.wst.testsuite.AllTests" todir="${junit.output.dir}" />
 			<classpath refid="classpath" />
 		</junit>
 	</target>
@@ -135,27 +135,27 @@
 		<mkdir dir="${junit.output.dir}" />
 		<junit fork="yes" printsummary="withOutAndErr">
 			<formatter type="xml" />
-			<test name="com.ericsson.wst.core.network.connection.TestLocalConnection" todir="${junit.output.dir}" />
+			<test name="com.honnix.wst.core.network.connection.TestLocalConnection" todir="${junit.output.dir}" />
 			<classpath refid="classpath" />
 		</junit>
 	</target>
 
 	<target name="Cli">
-		<java classname="com.ericsson.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
+		<java classname="com.honnix.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
 			<classpath refid="classpath" />
 		</java>
 
 	</target>
 
 	<target name="Cli-List">
-		<java classname="com.ericsson.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
+		<java classname="com.honnix.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
 			<arg line="-l" />
 			<classpath refid="classpath" />
 		</java>
 	</target>
 
 	<target name="Cli-Help">
-		<java classname="com.ericsson.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
+		<java classname="com.honnix.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
 			<arg line="-h" />
 			<classpath refid="classpath" />
 		</java>
