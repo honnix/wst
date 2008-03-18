@@ -1,172 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project basedir="." default="build" name="wst">
-	<property environment="env" />
-	<property name="junit.output.dir" value="junit" />
-	<property name="debuglevel" value="source,lines,vars" />
-	<property name="debug" value="true" />
-	<property name="target" value="1.5" />
-	<property name="source" value="1.5" />
-	<property name="src.dir" value="src" />
-	<property name="test.dir" value="test" />
-	<property name="classes.dir" value="classes" />
-	<property name="lib.dir" value="lib" />
-	<property name="bin.dir" value="bin" />
-	<property name="etc.dir" value="etc" />
-	<property name="ext.dir" value="ext" />
-	<property name="dist.dir" value="dist" />
-	<property name="dist.name" value="${ant.project.name}" />
-	<property name="dist.version" value="0.2.3" />
-	<property name="main.class" value="com.honnix.wst.ui.Cli" />
-	<property name="failonerror" value="true" />
-	<property name="fork" value="true" />
+    <property environment="env" />
+    <property name="junit.output.dir" value="junit" />
+    <property name="debuglevel" value="source,lines,vars" />
+    <property name="debug" value="true" />
+    <property name="target" value="1.5" />
+    <property name="source" value="1.5" />
+    <property name="src.dir" value="src" />
+    <property name="test.dir" value="test" />
+    <property name="classes.dir" value="classes" />
+    <property name="lib.dir" value="lib" />
+    <property name="bin.dir" value="bin" />
+    <property name="etc.dir" value="etc" />
+    <property name="ext.dir" value="ext" />
+    <property name="dist.dir" value="dist" />
+    <property name="dist.name" value="${ant.project.name}" />
+    <property name="dist.version" value="0.2.3" />
+    <property name="main.class" value="com.ericsson.wst.ui.Cli" />
+    <property name="failonerror" value="true" />
+    <property name="fork" value="true" />
 
-	<path id="classpath">
-		<pathelement location="${classes.dir}" />
-		<pathelement location="${lib.dir}/commons-net-1.4.1.jar" />
-		<pathelement location="${lib.dir}/java-getopt-1.0.13.jar" />
-		<pathelement location="${lib.dir}/junit.jar" />
-		<pathelement location="${etc.dir}" />
-		<pathelement location="${ext.dir}" />
-	</path>
+    <path id="classpath">
+        <pathelement location="${classes.dir}" />
+        <pathelement location="${lib.dir}/commons-net-1.4.1.jar" />
+        <pathelement location="${lib.dir}/java-getopt-1.0.13.jar" />
+        <pathelement location="${lib.dir}/junit.jar" />
+        <pathelement location="${etc.dir}" />
+        <pathelement location="${ext.dir}" />
+    </path>
 
-	<target name="init">
-		<mkdir dir="${classes.dir}" />
-	</target>
+    <target name="init">
+        <mkdir dir="${classes.dir}" />
+    </target>
 
-	<target name="clean">
-		<delete dir="${classes.dir}" />
-	</target>
+    <target name="clean">
+        <delete dir="${classes.dir}" />
+    </target>
 
-	<target depends="clean" name="cleanall">
-		<delete dir="${bin.dir}" includes="*.jar" />
-		<delete dir="${dist.dir}" />
-		<delete dir="${junit.output.dir}" />
-	</target>
+    <target depends="clean" name="cleanall">
+        <delete dir="${bin.dir}" includes="*.jar" />
+        <delete dir="${dist.dir}" />
+        <delete dir="${junit.output.dir}" />
+    </target>
 
-	<target depends="build-project" name="build" />
+    <target depends="build-project" name="build" />
 
-	<target depends="init" name="build-project">
-		<echo message="${ant.project.name}: ${ant.file}" />
-		<javac debug="${debug}" debuglevel="${debuglevel}" destdir="${classes.dir}" source="${source}" target="${target}">
-			<src path="${src.dir}" />
-			<classpath refid="classpath" />
-		</javac>
-		<javac debug="${debug}" debuglevel="${debuglevel}" destdir="${classes.dir}" source="${source}" target="${target}">
-			<src path="${test.dir}" />
-			<classpath refid="classpath" />
-		</javac>
-	</target>
+    <target depends="init" name="build-project">
+        <echo message="${ant.project.name}: ${ant.file}" />
+        <javac debug="${debug}" debuglevel="${debuglevel}" destdir="${classes.dir}" source="${source}" target="${target}">
+            <src path="${src.dir}" />
+            <classpath refid="classpath" />
+        </javac>
+        <javac debug="${debug}" debuglevel="${debuglevel}" destdir="${classes.dir}" source="${source}" target="${target}">
+            <src path="${test.dir}" />
+            <classpath refid="classpath" />
+        </javac>
+    </target>
 
-	<target depends="init" name="pack-src">
-		<zip destfile="${classes.dir}/${src.dir}.zip">
-			<zipfileset dir="${src.dir}" />
-		</zip>
-		<zip destfile="${classes.dir}/${test.dir}.zip">
-			<zipfileset dir="${test.dir}" />
-		</zip>
-	</target>
+    <target depends="init" name="pack-src">
+        <zip destfile="${classes.dir}/${src.dir}.zip">
+            <zipfileset dir="${src.dir}" />
+        </zip>
+        <zip destfile="${classes.dir}/${test.dir}.zip">
+            <zipfileset dir="${test.dir}" />
+        </zip>
+    </target>
 
-	<target depends="pack-src, build" name="jar">
-		<jar destfile="${bin.dir}/${dist.name}-${dist.version}.jar">
-			<fileset dir="${classes.dir}" excludes="**/Test*.class" />
-			<manifest>
-				<attribute name="Built-By" value="${user.name}" />
-				<!--attribute name="Main-Class" value="${main.class}" /-->
-				<!--attribute name="Class-Path" value="../etc/ ../lib/commons-net-1.4.1.jar ../lib/java-getopt-1.0.13.jar" /-->
-			</manifest>
-		</jar>
-	</target>
+    <target depends="pack-src, build" name="jar">
+        <jar destfile="${bin.dir}/${dist.name}-${dist.version}.jar">
+            <fileset dir="${classes.dir}" excludes="**/Test*.class" />
+            <manifest>
+                <attribute name="Built-By" value="${user.name}" />
+                <!--attribute name="Main-Class" value="${main.class}" /-->
+                <!--attribute name="Class-Path" value="../etc/ ../lib/commons-net-1.4.1.jar ../lib/java-getopt-1.0.13.jar" /-->
+            </manifest>
+        </jar>
+    </target>
 
-	<target depends="jar" name="dist">
-		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}" />
-		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}" />
-		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${etc.dir}" />
-		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${lib.dir}" />
-		<mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${ext.dir}" />
-		<copy todir="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}">
-			<fileset dir="${bin.dir}" />
-		</copy>
-		<chmod file="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}/wst" perm="u+x" />
-		<copy todir="${dist.dir}/${dist.name}-${dist.version}/${etc.dir}">
-			<fileset dir="${etc.dir}" excludes="mock*.properties" />
-		</copy>
-		<copy todir="${dist.dir}/${dist.name}-${dist.version}/${lib.dir}">
-			<fileset dir="${lib.dir}" excludes="junit*" />
-		</copy>
-	</target>
+    <target depends="jar" name="dist">
+        <mkdir dir="${dist.dir}/${dist.name}-${dist.version}" />
+        <mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}" />
+        <mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${etc.dir}" />
+        <mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${lib.dir}" />
+        <mkdir dir="${dist.dir}/${dist.name}-${dist.version}/${ext.dir}" />
+        <copy todir="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}">
+            <fileset dir="${bin.dir}" />
+        </copy>
+        <chmod file="${dist.dir}/${dist.name}-${dist.version}/${bin.dir}/wst" perm="u+x" />
+        <copy todir="${dist.dir}/${dist.name}-${dist.version}/${etc.dir}">
+            <fileset dir="${etc.dir}" excludes="mock*.properties" />
+        </copy>
+        <copy todir="${dist.dir}/${dist.name}-${dist.version}/${lib.dir}">
+            <fileset dir="${lib.dir}" excludes="junit*" />
+        </copy>
+    </target>
 
-	<target name="TestWorkstationFileReader">
-		<mkdir dir="${junit.output.dir}" />
-		<junit fork="yes" printsummary="withOutAndErr">
-			<formatter type="xml" />
-			<test name="com.honnix.wst.core.data.TestWorkstationFileReader" todir="${junit.output.dir}" />
-			<classpath refid="classpath" />
-		</junit>
-	</target>
+    <target name="TestWorkstationFileReader">
+        <mkdir dir="${junit.output.dir}" />
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml" />
+            <test name="com.ericsson.wst.core.data.TestWorkstationFileReader" todir="${junit.output.dir}" />
+            <classpath refid="classpath" />
+        </junit>
+    </target>
 
-	<target name="TestCommandExecutor">
-		<mkdir dir="${junit.output.dir}" />
-		<junit fork="yes" printsummary="withOutAndErr">
-			<formatter type="xml" />
-			<test name="com.honnix.wst.core.command.TestCommandExecutor" todir="${junit.output.dir}" />
-			<classpath refid="classpath" />
-		</junit>
-	</target>
+    <target name="TestCommandExecutor">
+        <mkdir dir="${junit.output.dir}" />
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml" />
+            <test name="com.ericsson.wst.core.command.TestCommandExecutor" todir="${junit.output.dir}" />
+            <classpath refid="classpath" />
+        </junit>
+    </target>
 
-	<target name="TestWorkstationMapAssembler">
-		<mkdir dir="${junit.output.dir}" />
-		<junit fork="yes" printsummary="withOutAndErr">
-			<formatter type="xml" />
-			<test name="com.honnix.wst.core.data.TestWorkstationMapAssembler" todir="${junit.output.dir}" />
-			<classpath refid="classpath" />
-		</junit>
-	</target>
+    <target name="TestWorkstationMapAssembler">
+        <mkdir dir="${junit.output.dir}" />
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml" />
+            <test name="com.ericsson.wst.core.data.TestWorkstationMapAssembler" todir="${junit.output.dir}" />
+            <classpath refid="classpath" />
+        </junit>
+    </target>
 
-	<target name="AllTests">
-		<mkdir dir="${junit.output.dir}" />
-		<junit fork="yes" printsummary="withOutAndErr">
-			<formatter type="xml" />
-			<test name="com.honnix.wst.testsuite.AllTests" todir="${junit.output.dir}" />
-			<classpath refid="classpath" />
-		</junit>
-	</target>
+    <target name="AllTests">
+        <mkdir dir="${junit.output.dir}" />
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml" />
+            <test name="com.ericsson.wst.testsuite.AllTests" todir="${junit.output.dir}" />
+            <classpath refid="classpath" />
+        </junit>
+    </target>
 
-	<target name="TestLocalConnection">
-		<mkdir dir="${junit.output.dir}" />
-		<junit fork="yes" printsummary="withOutAndErr">
-			<formatter type="xml" />
-			<test name="com.honnix.wst.core.network.connection.TestLocalConnection" todir="${junit.output.dir}" />
-			<classpath refid="classpath" />
-		</junit>
-	</target>
+    <target name="TestLocalConnection">
+        <mkdir dir="${junit.output.dir}" />
+        <junit fork="yes" printsummary="withOutAndErr">
+            <formatter type="xml" />
+            <test name="com.ericsson.wst.core.network.connection.TestLocalConnection" todir="${junit.output.dir}" />
+            <classpath refid="classpath" />
+        </junit>
+    </target>
 
-	<target name="Cli">
-		<java classname="com.honnix.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
-			<classpath refid="classpath" />
-		</java>
+    <target name="Cli">
+        <java classname="com.ericsson.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
+            <classpath refid="classpath" />
+        </java>
 
-	</target>
+    </target>
 
-	<target name="Cli-List">
-		<java classname="com.honnix.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
-			<arg line="-l" />
-			<classpath refid="classpath" />
-		</java>
-	</target>
+    <target name="Cli-List">
+        <java classname="com.ericsson.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
+            <arg line="-l" />
+            <classpath refid="classpath" />
+        </java>
+    </target>
 
-	<target name="Cli-Help">
-		<java classname="com.honnix.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
-			<arg line="-h" />
-			<classpath refid="classpath" />
-		</java>
-	</target>
+    <target name="Cli-Help">
+        <java classname="com.ericsson.wst.ui.Cli" failonerror="${failonerror}" fork="${fork}">
+            <arg line="-h" />
+            <classpath refid="classpath" />
+        </java>
+    </target>
 
-	<target name="junitreport">
-		<junitreport todir="${junit.output.dir}">
-			<fileset dir="${junit.output.dir}">
-				<include name="TEST-*.xml" />
-			</fileset>
-			<report format="frames" todir="${junit.output.dir}" />
-		</junitreport>
-	</target>
+    <target name="junitreport">
+        <junitreport todir="${junit.output.dir}">
+            <fileset dir="${junit.output.dir}">
+                <include name="TEST-*.xml" />
+            </fileset>
+            <report format="frames" todir="${junit.output.dir}" />
+        </junitreport>
+    </target>
 </project>
