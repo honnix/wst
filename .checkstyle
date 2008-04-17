@@ -3,7 +3,7 @@
     <local-check-config name="honnix" location="C:\Documents and Settings\ehonlia\workspace\wst\checkstyle.xml" type="external" description="">
         <additional-data name="protect-config-file" value="true"/>
     </local-check-config>
-    <fileset name="all" enabled="true" check-config-name="honnix" local="true">
+    <fileset name="all" enabled="true" check-config-name="wst" local="false">
         <file-match-pattern match-pattern="." include-pattern="true"/>
     </fileset>
 </fileset-config>

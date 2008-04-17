@@ -1,3 +1,23 @@
+/**
+ * TestCommandExecutor.java
+ * 
+ * Copyright : (C) 2008 by Honnix
+ * Email     : hxliang1982@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
+ */
 package com.honnix.wst.core.command;
 
 import java.util.ArrayList;
@@ -8,15 +28,15 @@ import junit.framework.TestCase;
 import com.honnix.wst.command.Command;
 import com.honnix.wst.command.UsedToTestCommand;
 import com.honnix.wst.constant.SystemProperties;
-import com.honnix.wst.core.command.CommandExecutor;
 import com.honnix.wst.core.data.Workstation;
 import com.honnix.wst.core.network.workflow.MockWorkflowFactory;
 import com.honnix.wst.error.CommandExecutionException;
 import com.honnix.wst.error.PropertiesFileNotFoundException;
 
 public class TestCommandExecutor
-        extends TestCase
+    extends TestCase
 {
+
     private CommandExecutor commandExecutor;
 
     /*
@@ -26,24 +46,11 @@ public class TestCommandExecutor
      */
     @Override
     protected void setUp()
-            throws Exception
+        throws Exception
     {
         super.setUp();
 
-        commandExecutor =
-                new CommandExecutor(new MockWorkflowFactory());
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#tearDown()
-     */
-    @Override
-    protected void tearDown()
-            throws Exception
-    {
-        super.tearDown();
+        commandExecutor = new CommandExecutor(new MockWorkflowFactory());
     }
 
     public void testExecute()
@@ -65,10 +72,9 @@ public class TestCommandExecutor
         {
             commandExecutor.execute(workstationList);
         }
-        catch (PropertiesFileNotFoundException e1)
+        catch (PropertiesFileNotFoundException e)
         {
-            // TODO Auto-generated catch block
-            e1.printStackTrace();
+            e.printStackTrace();
         }
 
         Workstation workstation = null;
@@ -78,12 +84,11 @@ public class TestCommandExecutor
         }
         catch (CommandExecutionException e)
         {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
+        assertEquals("", "testResponse" + SystemProperties.LINE_SEPARATOR,
                 workstation.getCommandList().get(0).getResponseList().get(0));
-        assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
+        assertEquals("", "testResponse" + SystemProperties.LINE_SEPARATOR,
                 workstation.getCommandList().get(1).getResponseList().get(0));
 
         try
@@ -95,9 +100,9 @@ public class TestCommandExecutor
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
+        assertEquals("", "testResponse" + SystemProperties.LINE_SEPARATOR,
                 workstation.getCommandList().get(0).getResponseList().get(0));
-        assertEquals("testResponse" + SystemProperties.LINE_SEPARATOR,
+        assertEquals("", "testResponse" + SystemProperties.LINE_SEPARATOR,
                 workstation.getCommandList().get(1).getResponseList().get(0));
 
     }

@@ -1,6 +1,22 @@
 /**
  * CommandLoader.java
- * Sep 11, 2007
+ * 
+ * Copyright : (C) 2008 by Honnix
+ * Email     : hxliang1982@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 package com.honnix.wst.core.command;
 
@@ -14,13 +30,19 @@ import com.honnix.wst.error.PropertiesFileNotFoundException;
 import com.honnix.wst.util.PropertiesLoader;
 
 /**
- * @author ehonlia
+ * 
  * 
  */
 public final class CommandLoader
 {
+
+    public static List<String> getAllIndicators()
+    {
+        return CommandFactory.getInstance().getAllIndicators();
+    }
+
     public static void loadCommand()
-            throws PropertiesFileNotFoundException
+        throws PropertiesFileNotFoundException
     {
         Properties properties = null;
 
@@ -65,14 +87,9 @@ public final class CommandLoader
         CommandFactory.getInstance().clear();
     }
 
-    public static List<String> getAllIndicators()
-    {
-        return CommandFactory.getInstance().getAllIndicators();
-    }
-
     private CommandLoader()
     {
-
+        super();
     }
 
 }

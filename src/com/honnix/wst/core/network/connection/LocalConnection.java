@@ -1,7 +1,22 @@
 /**
  * LocalConnection.java
- *
- * Sep 22, 2007
+ * 
+ * Copyright : (C) 2008 by Honnix
+ * Email     : hxliang1982@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 package com.honnix.wst.core.network.connection;
 
@@ -17,40 +32,45 @@ import com.honnix.wst.constant.SystemProperties;
 import com.honnix.wst.error.NetworkException;
 
 /**
- * @author honnix
+ * 
  * 
  */
 public class LocalConnection
-        implements Connection
+    implements Connection
 {
+
     private class MyInputStream
-            extends InputStream
+        extends InputStream
     {
+
         private StringBuilder sb = new StringBuilder();
 
         private int pos = 0;
 
         @Override
         public int read()
-                throws IOException
+            throws IOException
         {
+            int data = -1;
+
             if (pos < sb.length())
             {
-                return sb.charAt(pos++);
+                data = sb.charAt(pos++);
             }
             else
             {
                 sb.delete(0, pos);
                 pos = 0;
-
-                return -1;
             }
+
+            return data;
         }
 
     }
 
     private class ProcessManager
     {
+
         public void run(List<String> command)
         {
             try
@@ -78,14 +98,16 @@ public class LocalConnection
 
     private MyInputStream is = new MyInputStream();
 
-    private boolean isConnected;
+    private boolean connected;
 
-    private OutputStream os = new OutputStream() {
+    private OutputStream os = new OutputStream()
+    {
+
         private StringBuilder sb = new StringBuilder();
 
         @Override
         public void write(int b)
-                throws IOException
+            throws IOException
         {
             sb.append((char) b);
 
@@ -112,7 +134,9 @@ public class LocalConnection
 
     public LocalConnection()
     {
-        isConnected = false;
+        super();
+
+        connected = false;
     }
 
     /*
@@ -121,9 +145,9 @@ public class LocalConnection
      * @see com.honnix.wst.core.network.connection.Connection#close()
      */
     public void close()
-            throws NetworkException
+        throws NetworkException
     {
-        isConnected = false;
+        connected = false;
     }
 
     /*
@@ -133,9 +157,9 @@ public class LocalConnection
      *      int)
      */
     public void connect(String host, int port)
-            throws NetworkException
+        throws NetworkException
     {
-        isConnected = true;
+        connected = true;
     }
 
     /*
@@ -144,7 +168,7 @@ public class LocalConnection
      * @see com.honnix.wst.core.network.connection.Connection#getInputStream()
      */
     public InputStream getInputStream()
-            throws NetworkException
+        throws NetworkException
     {
         return is;
     }
@@ -155,7 +179,7 @@ public class LocalConnection
      * @see com.honnix.wst.core.network.connection.Connection#getOutputStream()
      */
     public OutputStream getOutputStream()
-            throws NetworkException
+        throws NetworkException
     {
         return os;
     }
@@ -167,7 +191,7 @@ public class LocalConnection
      */
     public boolean isConnected()
     {
-        return isConnected;
+        return connected;
     }
 
 }

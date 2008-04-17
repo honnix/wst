@@ -1,6 +1,22 @@
 /**
  * Coordinator.java
- * Sep 17, 2007
+ * 
+ * Copyright : (C) 2008 by Honnix
+ * Email     : hxliang1982@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 package com.honnix.wst.core.facade;
 
@@ -28,11 +44,12 @@ import com.honnix.wst.output.StandardOutput;
 import com.honnix.wst.util.PropertiesLoader;
 
 /**
- * @author ehonlia
+ * 
  * 
  */
 public class Coordinator
 {
+
     private WorkstationListAssembler assembler;
 
     private CommandExecutor commandExecutor;
@@ -43,18 +60,35 @@ public class Coordinator
 
     private Output output;
 
-    private Properties properties;
-
     public Coordinator()
     {
+        super();
+    }
+
+    public List<String> getAllIndicators()
+    {
+        return CommandLoader.getAllIndicators();
+    }
+
+    public String getCommand(String indicator)
+    {
+        return CommandFactory.getInstance().produceCommand(indicator)
+                .getCommand();
+    }
+
+    public ErrorCode getErrorCode()
+    {
+        return errorCode;
     }
 
     /**
      * @throws PropertiesFileNotFoundException
      */
     private void loadFormatterAndOutput()
-            throws PropertiesFileNotFoundException
+        throws PropertiesFileNotFoundException
     {
+        Properties properties = null;
+
         try
         {
             properties = PropertiesLoader.loadProperties("wst.properties");
@@ -96,21 +130,11 @@ public class Coordinator
         }
     }
 
-    private void setErrorCode(ErrorCode errorCode)
-    {
-        this.errorCode = errorCode;
-    }
-
-    public ErrorCode getErrorCode()
-    {
-        return errorCode;
-    }
-
     public void outputWorkstationStatus()
-            throws CommandExecutionException
+        throws CommandExecutionException
     {
         CommandExecutionException toThrow = null;
-        
+
         for (int i = 0; i < assembler.get().size(); ++i)
         {
             Workstation workstation = null;
@@ -123,7 +147,7 @@ public class Coordinator
             {
                 setErrorCode(ErrorCode.COMMAND_EXECUTION_INTERRUPTED);
                 toThrow = e;
-                
+
                 continue;
             }
 
@@ -145,8 +169,13 @@ public class Coordinator
         }
     }
 
+    private void setErrorCode(ErrorCode errorCode)
+    {
+        this.errorCode = errorCode;
+    }
+
     public void setUp()
-            throws PropertiesFileNotFoundException
+        throws PropertiesFileNotFoundException
     {
         try
         {
@@ -171,8 +200,7 @@ public class Coordinator
     }
 
     public void testWorstationStatus(String fileName)
-            throws WorkstationFileReadException,
-            PropertiesFileNotFoundException
+        throws WorkstationFileReadException, PropertiesFileNotFoundException
     {
         Map<String, List<String>> indicatorMap = null;
 
@@ -199,17 +227,6 @@ public class Coordinator
 
             throw e;
         }
-    }
-
-    public List<String> getAllIndicators()
-    {
-        return CommandLoader.getAllIndicators();
-    }
-
-    public String getCommand(String indicator)
-    {
-        return CommandFactory.getInstance().produceCommand(indicator)
-                .getCommand();
     }
 
 }

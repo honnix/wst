@@ -1,54 +1,45 @@
 /**
  * TestTelnetConnection.java
- * Sep 14, 2007
+ * 
+ * Copyright : (C) 2008 by Honnix
+ * Email     : hxliang1982@gmail.com
+ * 
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+
+ * You should have received a copy of the GNU General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * 
  */
 package com.honnix.wst.core.network.connection;
 
 import junit.framework.TestCase;
 
-import com.honnix.wst.core.network.connection.Connection;
-import com.honnix.wst.core.network.connection.TelnetConnection;
 import com.honnix.wst.core.network.workflow.Communicator;
 import com.honnix.wst.error.NetworkException;
 
 /**
- * @author ehonlia
+ * 
  * 
  */
 public class TestTelnetConnection
-        extends TestCase
+    extends TestCase
 {
+
     private Connection connection = new TelnetConnection();
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#setUp()
-     */
-    @Override
-    protected void setUp()
-            throws Exception
-    {
-        super.setUp();
-    }
-
-    /*
-     * (non-Javadoc)
-     * 
-     * @see junit.framework.TestCase#tearDown()
-     */
-    @Override
-    protected void tearDown()
-            throws Exception
-    {
-        super.tearDown();
-    }
 
     public void testConnectClose()
     {
         try
         {
-            connection.connect("150.236.41.101", 23);
+            connection.connect("150.236.41.101", 23); // NOPMD by honnix on 4/17/08 10:20 PM
         }
         catch (NetworkException e1)
         {
@@ -67,17 +58,17 @@ public class TestTelnetConnection
             }
             else
             {
-                assertTrue(false);
+                fail();
             }
         }
         catch (NetworkException e)
         {
             e.printStackTrace();
 
-            assertTrue(false);
+            fail();
         }
 
-        assertEquals("Password: ", communicator.sendAndReceive("ehonlia"));
+        assertEquals("", "Password: ", communicator.sendAndReceive("honnix"));
 
         try
         {
@@ -87,7 +78,7 @@ public class TestTelnetConnection
         {
             e.printStackTrace();
 
-            assertTrue(false);
+            fail();
         }
     }
 }
